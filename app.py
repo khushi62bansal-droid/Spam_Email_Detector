@@ -9,15 +9,20 @@ st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="wide")
 st.markdown("""
 <style>
 
-/* Hides the header (main menu, hamburger, top bar) */
-header {visibility: hidden;}
+ /* Hide the entire header (the white bar you see) */
+        [data-testid="stHeader"] {
+            display: none;
+        }
 
-/* Hides the "Made with Streamlit" footer */
-footer {visibility: hidden;}
-
-/* Reduces top padding to bring content up */
-div.block-container {padding-top: 1rem;}
-
+        /* Remove the large white space at the top of the page */
+        .stAppViewBlockContainer {
+            padding-top: 0rem !important;
+        }
+        
+        /* Optional: Hide the toolbar/hamburger menu specifically */
+        [data-testid="stToolbar"] {
+            display: none;
+        }
 /* REMOVE EXTRA SPACE */
 .block-container {
     padding-top: 1rem !important;
