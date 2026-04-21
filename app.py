@@ -37,7 +37,7 @@ st.markdown("""
     .center-box {
         max-width: 600px;
         margin: auto;
-        margin-top: 5vh; 
+        margin-top: 0vh; 
         background: white;
         padding: 30px;
         border-radius: 16px;
