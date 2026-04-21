@@ -96,3 +96,17 @@ if st.button("🔍 Analyze Email"):
             st.success("✅ Safe Email")
 
 st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+
+/* 🔥 REMOVE STREAMLIT HEADER */
+header {visibility: hidden;}
+
+/* REMOVE TOP SPACE */
+.block-container {
+    padding-top: 1rem;
+}
+
+</style>
+""", unsafe_allow_html=True)
