@@ -7,6 +7,10 @@ st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="wide")
 # 🌿 SOFT MINIMAL UI (CALM COLORS)
 st.markdown("""
 <style>
+/* 🔥 ADD THESE 2 LINES HERE */
+header {visibility: hidden;}
+footer {visibility: hidden;}
+
 
 /* REMOVE EXTRA SPACE */
 .block-container {
@@ -97,16 +101,3 @@ if st.button("🔍 Analyze Email"):
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-
-/* 🔥 REMOVE STREAMLIT HEADER */
-header {visibility: hidden;}
-
-/* REMOVE TOP SPACE */
-.block-container {
-    padding-top: 1rem;
-}
-
-</style>
-""", unsafe_allow_html=True)
