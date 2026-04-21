@@ -8,43 +8,44 @@ st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="centere
 # Custom CSS (Beautiful Gradient + Glassmorphism)
 st.markdown("""
 <style>
-body {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+
+
+.stApp {
+    background: linear-gradient(135deg, #ff512f, #dd2476, #6a11cb, #2575fc);
     background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    animation: gradientMove 10s ease infinite;
 }
 
-@keyframes gradientBG {
+
+@keyframes gradientMove {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
 }
 
-.main {
-    background: transparent;
-}
 
 .container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.9);  /* less transparent */
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     text-align: center;
 }
 
+
 h1 {
-    color: white;
-    font-weight: 600;
+    color: #222;
+    font-weight: 700;
 }
+
 
 textarea {
     border-radius: 12px !important;
-    padding: 10px;
 }
 
+
 .stButton>button {
-    background: linear-gradient(135deg, #ff6a00, #ee0979);
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
     color: white;
     border-radius: 12px;
     height: 3em;
@@ -55,8 +56,9 @@ textarea {
 }
 
 .stButton>button:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
+
 
 .result {
     padding: 15px;
