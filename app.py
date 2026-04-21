@@ -2,70 +2,69 @@ import streamlit as st
 import pickle
 import time
 
-# Page config
-st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="centered")
+st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="wide")
 
-# Custom CSS (Beautiful Gradient + Glassmorphism)
+# 🌿 SOFT MINIMAL UI (CALM COLORS)
 st.markdown("""
 <style>
 
+/* REMOVE EXTRA SPACE */
+.block-container {
+    padding-top: 2rem;
+}
 
+/* SOFT BACKGROUND (NO ANIMATION) */
 .stApp {
-    background: linear-gradient(135deg, #ff512f, #dd2476, #6a11cb, #2575fc);
-    background-size: 400% 400%;
-    animation: gradientMove 10s ease infinite;
+    background: linear-gradient(135deg, #e3f2fd, #fce4ec);
 }
 
-
-@keyframes gradientMove {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-}
-
-
-.container {
-    background: rgba(255, 255, 255, 0.9);  /* less transparent */
+/* CENTER CARD */
+.center-box {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 60px;
+    background: white;
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
 }
 
-
-h1 {
-    color: #222;
-    font-weight: 700;
+/* TITLE */
+.title {
+    font-size: 30px;
+    font-weight: 600;
+    color: #333;
 }
 
+/* SUBTEXT */
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
 
+/* TEXTAREA */
 textarea {
-    border-radius: 12px !important;
+    border-radius: 10px !important;
+    border: 1px solid #ddd !important;
 }
 
-
+/* BUTTON (SOFT GRADIENT) */
 .stButton>button {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    color: white;
-    border-radius: 12px;
-    height: 3em;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    color: #fff;
+    border-radius: 10px;
+    height: 42px;
     width: 100%;
-    font-size: 16px;
+    font-size: 15px;
     border: none;
+    margin-top: 10px;
     transition: 0.3s;
 }
 
 .stButton>button:hover {
-    transform: scale(1.08);
-}
-
-
-.result {
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 15px;
-    font-size: 18px;
-    font-weight: bold;
+    transform: scale(1.03);
 }
 
 </style>
@@ -76,25 +75,24 @@ model = pickle.load(open('model.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
 # UI
-st.markdown('<div class="container">', unsafe_allow_html=True)
+st.markdown('<div class="center-box">', unsafe_allow_html=True)
 
-st.markdown("# 📧 Spam Email Detector")
-st.markdown("<p style='color:white;'>✨ Beautiful AI-powered email checker</p>", unsafe_allow_html=True)
+st.markdown('<div class="title">📧 Spam Email Detector</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Calm & clean AI email checker</div>', unsafe_allow_html=True)
 
-input_text = st.text_area("", height=180, placeholder="💌 Paste your email content here...")
+text = st.text_area("", height=150, placeholder="💌 Paste your email content here...")
 
-if st.button("🚀 Analyze Now"):
-    if input_text.strip() == "":
-        st.warning("⚠️ Please enter email text!")
+if st.button("🔍 Analyze Email"):
+    if text.strip() == "":
+        st.warning("⚠️ Enter email text")
     else:
-        with st.spinner("Analyzing magic... ✨"):
+        with st.spinner("Checking..."):
             time.sleep(1)
-            transformed = vectorizer.transform([input_text])
-            result = model.predict(transformed)[0]
+            result = model.predict(vectorizer.transform([text]))[0]
 
         if result == 1:
-            st.markdown('<div class="result" style="background:#ff4b5c;color:white;">🚨 Spam Email Detected</div>', unsafe_allow_html=True)
+            st.error("🚨 Spam Email")
         else:
-            st.markdown('<div class="result" style="background:#00c9a7;color:white;">✅ Safe Email</div>', unsafe_allow_html=True)
+            st.success("✅ Safe Email")
 
 st.markdown('</div>', unsafe_allow_html=True)
