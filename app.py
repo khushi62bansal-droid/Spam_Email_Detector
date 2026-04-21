@@ -8,19 +8,12 @@ st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="wide")
 st.markdown("""
 <style>
 
-/* 🚫 REMOVE HEADER + TOOLBAR COMPLETELY */
-header {visibility: hidden;}
-footer {visibility: hidden;}
-[data-testid="stHeader"] {display: none;}
-[data-testid="stToolbar"] {display: none;}
-[data-testid="stDecoration"] {display: none;}
-
 /* REMOVE EXTRA SPACE */
 .block-container {
-    padding-top: 0rem;
+    padding-top: 2rem;
 }
 
-/* BACKGROUND */
+/* SOFT BACKGROUND (NO ANIMATION) */
 .stApp {
     background: linear-gradient(135deg, #e3f2fd, #fce4ec);
 }
@@ -51,13 +44,13 @@ footer {visibility: hidden;}
     margin-bottom: 15px;
 }
 
-/* TEXTAREA FIX */
-.stTextArea textarea {
+/* TEXTAREA */
+textarea {
     border-radius: 10px !important;
     border: 1px solid #ddd !important;
 }
 
-/* BUTTON */
+/* BUTTON (SOFT GRADIENT) */
 .stButton>button {
     background: linear-gradient(135deg, #89f7fe, #66a6ff);
     color: #fff;
@@ -76,3 +69,30 @@ footer {visibility: hidden;}
 
 </style>
 """, unsafe_allow_html=True)
+
+# Load model
+model = pickle.load(open('model.pkl', 'rb'))
+vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
+
+# UI
+st.markdown('<div class="center-box">', unsafe_allow_html=True)
+
+st.markdown('<div class="title">📧 Spam Email Detector</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Calm & clean AI email checker</div>', unsafe_allow_html=True)
+
+text = st.text_area("", height=150, placeholder="💌 Paste your email content here...")
+
+if st.button("🔍 Analyze Email"):
+    if text.strip() == "":
+        st.warning("⚠️ Enter email text")
+    else:
+        with st.spinner("Checking..."):
+            time.sleep(1)
+            result = model.predict(vectorizer.transform([text]))[0]
+
+        if result == 1:
+            st.error("🚨 Spam Email")
+        else:
+            st.success("✅ Safe Email")
+
+st.markdown('</div>', unsafe_allow_html=True)
