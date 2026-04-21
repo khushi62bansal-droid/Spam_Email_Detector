@@ -4,16 +4,22 @@ import time
 
 st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="wide")
 
+
 # 🌿 SOFT MINIMAL UI (CALM COLORS)
 st.markdown("""
 <style>
 
+/* HIDE DEFAULT STREAMLIT ELEMENTS */
+header {visibility: hidden;}
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+
 /* REMOVE EXTRA SPACE */
 .block-container {
-    padding-top: 2rem;
+    padding-top: 1rem !important;
 }
 
-/* SOFT BACKGROUND (NO ANIMATION) */
+/* SOFT BACKGROUND */
 .stApp {
     background: linear-gradient(135deg, #e3f2fd, #fce4ec);
 }
@@ -22,14 +28,13 @@ st.markdown("""
 .center-box {
     max-width: 600px;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 5vh; /* Responsive margin */
     background: white;
     padding: 30px;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     text-align: center;
 }
-
 /* TITLE */
 .title {
     font-size: 30px;
