@@ -5,22 +5,22 @@ import time
 st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="wide")
 
 
-# 🌿 SOFT MINIMAL UI (CALM COLORS)
+
 st.markdown("""
 <style>
-    /* 1. THE NUCLEAR FIX FOR THE WHITE HEADER */
+    
     header, [data-testid="stHeader"] {
         display: none !important;
         visibility: hidden !important;
         height: 0px !important;
     }
 
-    /* 2. REMOVE THE TOP DECORATION LINE */
+   
     [data-testid="stDecoration"] {
         display: none !important;
     }
 
-    /* 3. REMOVE EXTRA SPACE AT THE TOP */
+   
     .stAppViewBlockContainer {
         padding-top: 0rem !important;
     }
@@ -28,12 +28,12 @@ st.markdown("""
         padding-top: 0rem !important;
     }
 
-    /* SOFT BACKGROUND */
+  
     .stApp {
         background: linear-gradient(135deg, #e3f2fd, #fce4ec);
     }
 
-    /* CENTER CARD */
+   
     .center-box {
         max-width: 600px;
         margin: auto;
@@ -45,27 +45,27 @@ st.markdown("""
         text-align: center;
     }
 
-    /* TITLE */
+ 
     .title {
         font-size: 30px;
         font-weight: 600;
         color: #333;
     }
 
-    /* SUBTEXT */
+    
     .subtitle {
         color: #666;
         font-size: 14px;
         margin-bottom: 15px;
     }
 
-    /* TEXTAREA */
+   
     textarea {
         border-radius: 10px !important;
         border: 1px solid #ddd !important;
     }
 
-    /* BUTTON (SOFT GRADIENT) */
+ 
     .stButton>button {
         background: linear-gradient(135deg, #89f7fe, #66a6ff) !important;
         color: #fff !important;
@@ -85,11 +85,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# Load model
+
 model = pickle.load(open('model.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
-# UI
+
 st.markdown('<div class="center-box">', unsafe_allow_html=True)
 
 st.markdown('<div class="title">📧 Spam Email Detector</div>', unsafe_allow_html=True)
