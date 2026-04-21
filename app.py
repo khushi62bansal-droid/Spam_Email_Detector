@@ -82,7 +82,7 @@ st.markdown('<div class="subtitle">Calm & clean AI email checker</div>', unsafe_
 
 text = st.text_area("", height=150, placeholder="💌 Paste your email content here...")
 
-if st.button("🔍 Analyze Email"):
+if st.button("🔍 Predict"):
     if text.strip() == "":
         st.warning("⚠️ Enter email text")
     else:
