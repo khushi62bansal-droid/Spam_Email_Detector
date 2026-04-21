@@ -1,36 +1,46 @@
 import streamlit as st
 import pickle
+import time
 
 # Page config
 st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="centered")
 
-# Custom CSS for better UI
+# Custom CSS
 st.markdown("""
 <style>
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
 .main {
-    background-color: #f5f7fa;
+    background-color: transparent;
 }
-.stTextArea textarea {
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 16px;
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    text-align: center;
 }
-.stButton button {
-    background-color: #4CAF50;
+
+textarea {
+    border-radius: 10px !important;
+}
+
+.stButton>button {
+    background: linear-gradient(135deg, #43cea2, #185a9d);
     color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     height: 3em;
     width: 100%;
     font-size: 16px;
 }
-.stButton button:hover {
-    background-color: #45a049;
-}
-.result-box {
+
+.result {
     padding: 15px;
     border-radius: 10px;
     margin-top: 15px;
-    text-align: center;
     font-size: 18px;
 }
 </style>
@@ -40,31 +50,26 @@ st.markdown("""
 model = pickle.load(open('model.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
-# Header
-st.markdown("""
-<h1 style='text-align: center;'>📧 Spam Email Detector</h1>
-<p style='text-align: center; color: gray;'>Detect whether an email is Spam or Not Spam using Machine Learning</p>
-""", unsafe_allow_html=True)
+# UI Card
+st.markdown('<div class="container">', unsafe_allow_html=True)
 
-# Input box
-input_text = st.text_area("✉️ Enter your email text here:", height=200, placeholder="Paste your email content here...")
+st.markdown("## 📧 Spam Email Detector")
+st.caption("AI-powered email classification")
 
-# Predict button
-if st.button("🔍 Check Email"):
+input_text = st.text_area("✉️ Enter your email:", height=150, placeholder="Paste email content...")
+
+if st.button("🔍 Analyze Email"):
     if input_text.strip() == "":
-        st.warning("⚠️ Please enter some email text!")
+        st.warning("⚠️ Please enter email text!")
     else:
-        transformed = vectorizer.transform([input_text])
-        result = model.predict(transformed)[0]
+        with st.spinner("Analyzing... ⏳"):
+            time.sleep(1)
+            transformed = vectorizer.transform([input_text])
+            result = model.predict(transformed)[0]
 
         if result == 1:
-            st.markdown("<div class='result-box' style='background-color:#ffe6e6; color:#cc0000;'>🚨 This is a SPAM Email</div>", unsafe_allow_html=True)
+            st.markdown('<div class="result" style="background:#ffe6e6;color:#cc0000;">🚨 Spam Email</div>', unsafe_allow_html=True)
         else:
-            st.markdown("<div class='result-box' style='background-color:#e6ffe6; color:#006600;'>✅ This is NOT a Spam Email</div>", unsafe_allow_html=True)
+            st.markdown('<div class="result" style="background:#e6ffe6;color:#006600;">✅ Not Spam</div>', unsafe_allow_html=True)
 
-# Footer
-st.markdown("""
-<hr>
-<p style='text-align: center; font-size: 14px; color: gray;'>Built with ❤️ using Streamlit</p>
-""", unsafe_allow_html=True)
-
+st.markdown('</div>', unsafe_allow_html=True)
