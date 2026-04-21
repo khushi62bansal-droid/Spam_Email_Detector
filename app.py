@@ -9,10 +9,10 @@ st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="wide")
 st.markdown("""
 <style>
 
-/* HIDE DEFAULT STREAMLIT ELEMENTS */
-header {visibility: hidden;}
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
+/* 1. COMPLETELY REMOVE TOP BAR & FOOTER */
+[data-testid="stHeader"], header, footer {
+    display: none !important;
+}
 
 /* REMOVE EXTRA SPACE */
 .block-container {
