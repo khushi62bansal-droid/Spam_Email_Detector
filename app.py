@@ -8,81 +8,82 @@ st.set_page_config(page_title="Spam Detector", page_icon="📧", layout="wide")
 # 🌿 SOFT MINIMAL UI (CALM COLORS)
 st.markdown("""
 <style>
+    /* 1. THE NUCLEAR FIX FOR THE WHITE HEADER */
+    header, [data-testid="stHeader"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0px !important;
+    }
 
- /* Hide the entire header (the white bar you see) */
-        [data-testid="stHeader"] {
-            display: none;
-        }
+    /* 2. REMOVE THE TOP DECORATION LINE */
+    [data-testid="stDecoration"] {
+        display: none !important;
+    }
 
-        /* Remove the large white space at the top of the page */
-        .stAppViewBlockContainer {
-            padding-top: 0rem !important;
-        }
-        
-        /* Optional: Hide the toolbar/hamburger menu specifically */
-        [data-testid="stToolbar"] {
-            display: none;
-        }
-/* REMOVE EXTRA SPACE */
-.block-container {
-    padding-top: 1rem !important;
-}
+    /* 3. REMOVE EXTRA SPACE AT THE TOP */
+    .stAppViewBlockContainer {
+        padding-top: 0rem !important;
+    }
+    .block-container {
+        padding-top: 0rem !important;
+    }
 
-/* SOFT BACKGROUND */
-.stApp {
-    background: linear-gradient(135deg, #e3f2fd, #fce4ec);
-}
+    /* SOFT BACKGROUND */
+    .stApp {
+        background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+    }
 
-/* CENTER CARD */
-.center-box {
-    max-width: 600px;
-    margin: auto;
-    margin-top: 5vh; /* Responsive margin */
-    background: white;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    text-align: center;
-}
-/* TITLE */
-.title {
-    font-size: 30px;
-    font-weight: 600;
-    color: #333;
-}
+    /* CENTER CARD */
+    .center-box {
+        max-width: 600px;
+        margin: auto;
+        margin-top: 5vh; 
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: center;
+    }
 
-/* SUBTEXT */
-.subtitle {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
+    /* TITLE */
+    .title {
+        font-size: 30px;
+        font-weight: 600;
+        color: #333;
+    }
 
-/* TEXTAREA */
-textarea {
-    border-radius: 10px !important;
-    border: 1px solid #ddd !important;
-}
+    /* SUBTEXT */
+    .subtitle {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
 
-/* BUTTON (SOFT GRADIENT) */
-.stButton>button {
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
-    color: #fff;
-    border-radius: 10px;
-    height: 42px;
-    width: 100%;
-    font-size: 15px;
-    border: none;
-    margin-top: 10px;
-    transition: 0.3s;
-}
+    /* TEXTAREA */
+    textarea {
+        border-radius: 10px !important;
+        border: 1px solid #ddd !important;
+    }
 
-.stButton>button:hover {
-    transform: scale(1.03);
-}
+    /* BUTTON (SOFT GRADIENT) */
+    .stButton>button {
+        background: linear-gradient(135deg, #89f7fe, #66a6ff) !important;
+        color: #fff !important;
+        border-radius: 10px;
+        height: 42px;
+        width: 100%;
+        font-size: 15px;
+        border: none;
+        margin-top: 10px;
+        transition: 0.3s;
+    }
 
+    .stButton>button:hover {
+        transform: scale(1.03);
+    }
 </style>
 """, unsafe_allow_html=True)
+
 
 # Load model
 model = pickle.load(open('model.pkl', 'rb'))
