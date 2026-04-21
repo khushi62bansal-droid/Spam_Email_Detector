@@ -83,9 +83,9 @@ vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 st.markdown('<div class="center-box">', unsafe_allow_html=True)
 
 st.markdown('<div class="title">📧 Spam Email Detector</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Calm & clean AI email checker</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Check whether your email is spam or not </div>', unsafe_allow_html=True)
 
-text = st.text_area("", height=150, placeholder="💌 Paste your email content here...")
+text = st.text_area("", height=150, placeholder="Paste your content here...")
 
 if st.button("🔍 Predict"):
     if text.strip() == "":
